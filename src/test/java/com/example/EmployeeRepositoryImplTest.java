@@ -27,6 +27,13 @@ class EmployeeRepositoryImplTest {
 
 		assertEquals(employee, employeeRepository.findAll().get(2));
 
+	}
+
+	@Test
+	void clearDatabase() {
+		employeeRepository.ClearDatabase();
+
+		assertEquals(0 , employeeRepository.findAll().size());
 
 	}
 }
