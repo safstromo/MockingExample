@@ -21,4 +21,8 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 	public EmployeeRepositoryImpl(List<Employee> employeeList) {
 		this.employees.addAll(employeeList);
 	}
+
+	public void ClearDatabase(){
+		employees.clear();
+	}
 }
