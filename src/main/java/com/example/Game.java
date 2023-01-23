@@ -43,6 +43,9 @@ public class Game {
 		} else if (pinn == 10) {
 			frames[rounds - 1] = frames[rounds - 1] + pinn;
 			numberOfRollsThisFrame = 0;
+		}else {
+			frames[rounds - 1] = frames[rounds - 1] + pinn;
+
 		}
 	}
 

@@ -107,4 +107,16 @@ class GameTest {
 
 		assertEquals(30, game.frames[9]);
 	}
+
+	@Test
+	void addScoreTwoStrikesLastFrame() {
+		game.rounds = 10;
+		game.roll(10);
+		game.roll(10);
+		game.roll(5);
+
+		assertEquals(25, game.frames[9]);
+
+	}
+
 }
