@@ -87,4 +87,14 @@ class GameTest {
 		assertEquals(18, game.frames[1]);
 
 	}
+
+	@Test
+	void addScoreToLastFrameIfSpare() {
+		game.rounds = 10;
+		game.roll(3);
+		game.roll(7);
+		game.roll(8);
+
+		assertEquals(26, game.frames[9]);
+	}
 }

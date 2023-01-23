@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Game {
 
-	int[] frames = new int[9];
+	int[] frames = new int[10];
 	List<Integer> score = new ArrayList<>();
 	int numberOfRollsThisFrame;
 	int spare;
@@ -14,20 +14,32 @@ public class Game {
 
 
 	void roll(int pinn) {
-		addSpareBonus(pinn);
-		addStrikeBonus(pinn);
-
+		if (rounds == 10) {
+			addRoundTenBonus(pinn);
+		} else {
+			addSpareBonus(pinn);
+			addStrikeBonus(pinn);
+		}
 		numberOfRollsThisFrame++;
+
 		score.add(pinn);
 		if (strikeHit(pinn)) {
 			numberOfRollsThisFrame = 0;
 			strike = 1;
 		} else if (spareHit()) {
 			spare = 1;
+
 		} else if (numberOfRollsThisFrame == 2) {
 			addRoundScore();
 		}
 
+	}
+
+	private void addRoundTenBonus(int pinn) {
+		if (spare == 1) {
+			frames[rounds - 1] = 10 + pinn + pinn;
+			spare = 0;
+		}
 	}
 
 	private void addStrikeBonus(int pinn) {
