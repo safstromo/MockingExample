@@ -7,7 +7,7 @@ import java.util.List;
 public class Game {
 
 	int[] frames = new int[10];
-	List<Integer> score = new ArrayList<>();
+	List<Integer> roundScore = new ArrayList<>();
 	int numberOfRollsThisFrame;
 	int spare;
 	int strike;
@@ -25,14 +25,14 @@ public class Game {
 		numberOfRollsThisFrame++;
 
 		if (!strikeHit(pinn))
-			score.add(pinn);
+			roundScore.add(pinn);
 
 		if (strikeHit(pinn)) {
 			numberOfRollsThisFrame = 2;
 			strike = 1;
 		} else if (spareHit()) {
 			spare = 1;
-			score.clear();
+			roundScore.clear();
 			endRound();
 
 		} else if (numberOfRollsThisFrame == 2) {
@@ -85,7 +85,7 @@ public class Game {
 
 	private void addRoundScore() {
 		frames[rounds] = frameScore();
-		score.clear();
+		roundScore.clear();
 		rounds++;
 		endRound();
 	}
@@ -95,7 +95,7 @@ public class Game {
 	}
 
 	private boolean spareHit() {
-		return numberOfRollsThisFrame % 2 == 0 && (score.get(numberOfRollsThisFrame - 1) + score.get(numberOfRollsThisFrame - 2) == 10);
+		return numberOfRollsThisFrame % 2 == 0 && (roundScore.get(numberOfRollsThisFrame - 1) + roundScore.get(numberOfRollsThisFrame - 2) == 10);
 	}
 
 	private void endRound() {
@@ -103,7 +103,7 @@ public class Game {
 	}
 
 	int frameScore() {
-		return score.stream().mapToInt(Integer::intValue).sum();
+		return roundScore.stream().mapToInt(Integer::intValue).sum();
 	}
 
 	int score() {
