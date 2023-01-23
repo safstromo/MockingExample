@@ -119,4 +119,40 @@ class GameTest {
 
 	}
 
+	@Test
+	void totalScore() {
+
+		game.roll(2);
+		game.roll(2); // 4
+
+		game.roll(3);
+		game.roll(3); // 6
+
+		game.roll(10);// 14
+
+		game.roll(3);
+		game.roll(1); // 4
+
+		game.roll(8);
+		game.roll(2); // 11
+
+		game.roll(1);
+		game.roll(1); // 2
+
+		game.roll(3);
+		game.roll(1); // 4
+
+		game.roll(3);
+		game.roll(1); // 4
+
+		game.roll(1);
+		game.roll(1); // 2
+
+		game.roll(10);
+		game.roll(1); // 11
+
+		assertEquals(62, game.score());
+
+	}
+
 }

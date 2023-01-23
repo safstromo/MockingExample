@@ -1,6 +1,7 @@
 package com.example;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Game {
@@ -23,12 +24,16 @@ public class Game {
 		}
 		numberOfRollsThisFrame++;
 
-		score.add(pinn);
+		if (!strikeHit(pinn))
+			score.add(pinn);
+
 		if (strikeHit(pinn)) {
-			numberOfRollsThisFrame = 0;
+			numberOfRollsThisFrame = 2;
 			strike = 1;
 		} else if (spareHit()) {
 			spare = 1;
+			score.clear();
+			endRound();
 
 		} else if (numberOfRollsThisFrame == 2) {
 			addRoundScore();
@@ -39,11 +44,11 @@ public class Game {
 	private void addRoundTenBonus(int pinn) {
 		if (spare == 1) {
 			frames[rounds - 1] = 10 + pinn + pinn;
-			spare = 0;
+			resetSpareCounter();
 		} else if (pinn == 10) {
 			frames[rounds - 1] = frames[rounds - 1] + pinn;
-			numberOfRollsThisFrame = 0;
-		}else {
+			endRound();
+		} else {
 			frames[rounds - 1] = frames[rounds - 1] + pinn;
 
 		}
@@ -53,25 +58,36 @@ public class Game {
 		if (strike == 1) {
 			frames[rounds] = 10 + pinn;
 			strike++;
+			endRound();
 		} else if (strike == 2) {
 			frames[rounds] = frames[rounds] + pinn;
-			strike = 0;
-			numberOfRollsThisFrame = 0;
+			resetStrikeCounter();
+			numberOfRollsThisFrame = 1;
+			rounds++;
 		}
+	}
+
+	private void resetSpareCounter() {
+		spare = 0;
+	}
+
+	private void resetStrikeCounter() {
+		strike = 0;
 	}
 
 	private void addSpareBonus(int pinn) {
 		if (spare == 1) {
 			frames[rounds] = 10 + pinn;
-			spare = 0;
+			resetSpareCounter();
+			rounds++;
 		}
 	}
 
 	private void addRoundScore() {
-		rounds++;
-		frames[rounds - 1] = frameScore();
+		frames[rounds] = frameScore();
 		score.clear();
-		numberOfRollsThisFrame = 0;
+		rounds++;
+		endRound();
 	}
 
 	private boolean strikeHit(int pinn) {
@@ -82,8 +98,15 @@ public class Game {
 		return numberOfRollsThisFrame % 2 == 0 && (score.get(numberOfRollsThisFrame - 1) + score.get(numberOfRollsThisFrame - 2) == 10);
 	}
 
+	private void endRound() {
+		numberOfRollsThisFrame = 0;
+	}
+
 	int frameScore() {
 		return score.stream().mapToInt(Integer::intValue).sum();
 	}
 
+	int score() {
+		return Arrays.stream(frames).sum();
+	}
 }
