@@ -53,7 +53,7 @@ class GameTest {
 	}
 
 	@Test
-	void thirdFrameIncorrectIndex() {
+	void thirdFrameInCorrectIndex() {
 		game.roll(4);
 		game.roll(4);
 		game.roll(4);
@@ -62,5 +62,17 @@ class GameTest {
 		game.roll(3);
 
 		assertEquals(5, game.frames[2]);
+	}
+
+	@Test
+	void addSpareToRoundScore() {
+		game.roll(3);
+		game.roll(7);
+		game.roll(5);
+
+		assertEquals(15, game.frames[0]);
+
+
+
 	}
 }

@@ -14,6 +14,8 @@ public class Game {
 
 
 	void roll(int pinn) {
+		addSpareBonus(pinn);
+
 		count++;
 		score.add(pinn);
 		if (strikeHit(pinn)) {
@@ -26,6 +28,13 @@ public class Game {
 			addRoundScore();
 		}
 
+	}
+
+	private void addSpareBonus(int pinn) {
+		if (spare == 1) {
+			frames[rounds] = 10 + pinn;
+			spare = 0;
+		}
 	}
 
 	private void addRoundScore() {
