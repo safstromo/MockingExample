@@ -11,10 +11,11 @@ public class Game {
 	int spare;
 	int strike;
 	int rounds;
+	static final int LAST_FRAME = 10;
 
 
 	void roll(int pinn) {
-		if (rounds == 10) {
+		if (rounds == LAST_FRAME) {
 			addRoundTenBonus(pinn);
 		} else {
 			addSpareBonus(pinn);
@@ -39,6 +40,9 @@ public class Game {
 		if (spare == 1) {
 			frames[rounds - 1] = 10 + pinn + pinn;
 			spare = 0;
+		} else if (pinn == 10) {
+			frames[rounds - 1] = frames[rounds - 1] + pinn;
+			numberOfRollsThisFrame = 0;
 		}
 	}
 

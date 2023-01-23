@@ -97,4 +97,14 @@ class GameTest {
 
 		assertEquals(26, game.frames[9]);
 	}
+
+	@Test
+	void addScoreToLastFrameIfStrike() {
+		game.rounds = 10;
+		game.roll(10);
+		game.roll(10);
+		game.roll(10);
+
+		assertEquals(30, game.frames[9]);
+	}
 }
