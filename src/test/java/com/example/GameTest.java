@@ -13,7 +13,7 @@ class GameTest {
 	void addScoreToList() {
 		game.roll(3);
 
-		assertEquals(3,game.frameScore());
+		assertEquals(3, game.frameScore());
 	}
 
 	@Test
@@ -21,7 +21,7 @@ class GameTest {
 		game.roll(2);
 		game.roll(8);
 
-		assertEquals(1,game.spare = 1);
+		assertEquals(1, game.spare = 1);
 	}
 
 	@Test
@@ -37,6 +37,18 @@ class GameTest {
 		game.roll(4);
 
 		assertEquals(6, Arrays.stream(game.frames).sum());
+
+	}
+
+	@Test
+	void addTwoFrameScore() {
+		game.roll(4);
+		game.roll(4);
+		game.roll(4);
+		game.roll(4);
+
+		assertEquals(16, Arrays.stream(game.frames).sum());
+
 
 	}
 }
