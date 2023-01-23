@@ -12,7 +12,7 @@ class EmployeeRepositoryImplTest {
 			(new Employee("1", 123), new Employee("2", 12345)));
 
 	@Test
-	void findAll() {
+	void findEmployeesInListReturned() {
 		var result1 = employeeRepository.findAll().get(0);
 		var result2 = employeeRepository.findAll().get(1);
 
@@ -21,7 +21,7 @@ class EmployeeRepositoryImplTest {
 	}
 
 	@Test
-	void save() {
+	void saveEmployeeToList() {
 		Employee employee = new Employee("3", 31);
 		employeeRepository.save(employee);
 
