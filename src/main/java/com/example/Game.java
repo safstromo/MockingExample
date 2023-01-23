@@ -7,7 +7,7 @@ public class Game {
 
 	int[] frames = new int[9];
 	List<Integer> score = new ArrayList<>();
-	int count;
+	int numberOfRollsThisFrame;
 	int spare;
 	int strike;
 	int rounds;
@@ -17,14 +17,14 @@ public class Game {
 		addSpareBonus(pinn);
 		addStrikeBonus(pinn);
 
-		count++;
+		numberOfRollsThisFrame++;
 		score.add(pinn);
 		if (strikeHit(pinn)) {
-			count = 0;
+			numberOfRollsThisFrame = 0;
 			strike = 1;
 		} else if (spareHit()) {
 			spare = 1;
-		} else if (count == 2) {
+		} else if (numberOfRollsThisFrame == 2) {
 			addRoundScore();
 		}
 
@@ -37,7 +37,7 @@ public class Game {
 		} else if (strike == 2) {
 			frames[rounds] = frames[rounds] + pinn;
 			strike = 0;
-			count = 0;
+			numberOfRollsThisFrame = 0;
 		}
 	}
 
@@ -52,15 +52,15 @@ public class Game {
 		rounds++;
 		frames[rounds - 1] = frameScore();
 		score.clear();
-		count = 0;
+		numberOfRollsThisFrame = 0;
 	}
 
 	private boolean strikeHit(int pinn) {
-		return count % 2 == 1 && pinn == 10;
+		return numberOfRollsThisFrame % 2 == 1 && pinn == 10;
 	}
 
 	private boolean spareHit() {
-		return count % 2 == 0 && (score.get(count - 1) + score.get(count - 2) == 10);
+		return numberOfRollsThisFrame % 2 == 0 && (score.get(numberOfRollsThisFrame - 1) + score.get(numberOfRollsThisFrame - 2) == 10);
 	}
 
 	int frameScore() {
