@@ -51,4 +51,16 @@ class GameTest {
 
 
 	}
+
+	@Test
+	void thirdFrameIncorrectIndex() {
+		game.roll(4);
+		game.roll(4);
+		game.roll(4);
+		game.roll(4);
+		game.roll(2);
+		game.roll(3);
+
+		assertEquals(5, game.frames[2]);
+	}
 }

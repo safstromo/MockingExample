@@ -23,12 +23,16 @@ public class Game {
 		} else if (spareHit()) {
 			spare = 1;
 		} else if (count == 2) {
-			rounds++;
-			frames[rounds] = frameScore();
-			score.clear();
-			count = 0;
+			addRoundScore();
 		}
 
+	}
+
+	private void addRoundScore() {
+		rounds++;
+		frames[rounds - 1] = frameScore();
+		score.clear();
+		count = 0;
 	}
 
 	private boolean strikeHit(int pinn) {
