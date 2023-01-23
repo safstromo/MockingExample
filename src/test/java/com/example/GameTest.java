@@ -13,4 +13,12 @@ class GameTest {
 		assertEquals(3,game.score());
 	}
 
+	@Test
+	void spareIsHit() {
+		game.roll(2);
+		game.roll(8);
+
+		assertEquals(1,game.spare = 1);
+	}
+
 }
