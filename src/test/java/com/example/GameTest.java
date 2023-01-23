@@ -75,4 +75,16 @@ class GameTest {
 
 
 	}
+
+	@Test
+	void addStrikeToRoundScore() {
+		game.roll(3);
+		game.roll(3);
+		game.roll(10);
+		game.roll(4);
+		game.roll(4);
+
+		assertEquals(18, game.frames[1]);
+
+	}
 }

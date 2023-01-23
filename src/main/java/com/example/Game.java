@@ -15,19 +15,30 @@ public class Game {
 
 	void roll(int pinn) {
 		addSpareBonus(pinn);
+		addStrikeBonus(pinn);
 
 		count++;
 		score.add(pinn);
 		if (strikeHit(pinn)) {
-			count += 2;
+			count = 0;
 			strike = 1;
-			spare = 1;
 		} else if (spareHit()) {
 			spare = 1;
 		} else if (count == 2) {
 			addRoundScore();
 		}
 
+	}
+
+	private void addStrikeBonus(int pinn) {
+		if (strike == 1) {
+			frames[rounds] = 10 + pinn;
+			strike++;
+		} else if (strike == 2) {
+			frames[rounds] = frames[rounds] + pinn;
+			strike = 0;
+			count = 0;
+		}
 	}
 
 	private void addSpareBonus(int pinn) {
