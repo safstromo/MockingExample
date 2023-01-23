@@ -5,23 +5,28 @@ import java.util.List;
 
 public class Game {
 
-	List<List> frames = new ArrayList<>();
+	int[] frames = new int[9];
 	List<Integer> score = new ArrayList<>();
 	int count;
 	int spare;
 	int strike;
+	int rounds;
 
 
 	void roll(int pinn) {
 		count++;
+		rounds++;
 		score.add(pinn);
-		if (spareHit()) {
-			spare = 1;
-		} else if (strikeHit(pinn)) {
+		if (strikeHit(pinn)) {
 			count += 2;
 			strike = 1;
+			spare = 1;
+		} else if (spareHit()) {
+			spare = 1;
+		} else if (count == 2) {
+			frames[rounds] = frameScore();
+			score.clear();
 		}
-
 
 	}
 
@@ -33,7 +38,7 @@ public class Game {
 		return count % 2 == 0 && (score.get(count - 1) + score.get(count - 2) == 10);
 	}
 
-	int score() {
+	int frameScore() {
 		return score.stream().mapToInt(Integer::intValue).sum();
 	}
 
