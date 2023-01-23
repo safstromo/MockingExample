@@ -21,4 +21,11 @@ class GameTest {
 		assertEquals(1,game.spare = 1);
 	}
 
+	@Test
+	void strikeIsHit() {
+		game.roll(10);
+
+		assertEquals(1, game.strike = 1);
+	}
+
 }
