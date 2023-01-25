@@ -106,10 +106,14 @@ public class Game {
 	}
 
 	private boolean strikeHit(int pinn) {
-		return numberOfRollsThisFrame % 2 == 1 && pinn == 10;
+		return firstRoll() && pinn == 10;
 	}
 
-	private boolean spareHit() {
+	 private boolean firstRoll() {
+		 return numberOfRollsThisFrame == 1;
+	 }
+
+	 private boolean spareHit() {
 		return endOfRound() && frameScore() == 10;
 	}
 
