@@ -23,8 +23,7 @@ public class Game {
 			roundScore.add(pinn);
 
 		if (strikeHit(pinn)) {
-			numberOfRollsThisFrame = 2;
-			strike = 1;
+			strikeHitEndRound();
 		} else if (spareHit()) {
 			spareHitEndRound();
 		} else if (endOfRound()) {
@@ -32,6 +31,11 @@ public class Game {
 		}
 
 	}
+
+	 private void strikeHitEndRound() {
+		 numberOfRollsThisFrame = 2;
+		 strike = 1;
+	 }
 
 	 private void spareHitEndRound() {
 		 spare = 1;
