@@ -26,14 +26,18 @@ public class Game {
 			numberOfRollsThisFrame = 2;
 			strike = 1;
 		} else if (spareHit()) {
-			spare = 1;
-			roundScore.clear();
-			endRound();
+			spareHitEndRound();
 		} else if (endOfRound()) {
 			addRoundScore();
 		}
 
 	}
+
+	 private void spareHitEndRound() {
+		 spare = 1;
+		 roundScore.clear();
+		 endRound();
+	 }
 
 	 private boolean endOfRound() {
 		 return numberOfRollsThisFrame == 2;
