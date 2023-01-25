@@ -29,11 +29,15 @@ public class Game {
 			spare = 1;
 			roundScore.clear();
 			endRound();
-		} else if (numberOfRollsThisFrame == 2) {
+		} else if (endOfRound()) {
 			addRoundScore();
 		}
 
 	}
+
+	 private boolean endOfRound() {
+		 return numberOfRollsThisFrame == 2;
+	 }
 
 	 private void checkIfLastRoundAndAddPoints(int pinn) {
 		 if (rounds == LAST_FRAME) {
@@ -102,7 +106,7 @@ public class Game {
 	}
 
 	private boolean spareHit() {
-		return numberOfRollsThisFrame % 2 == 0 && frameScore() == 10;
+		return endOfRound() && frameScore() == 10;
 	}
 
 	private void endRound() {
