@@ -3,7 +3,7 @@ package com.example;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
+ //SWITCH????
 public class Game {
 
 	int[] frames = new int[10];
@@ -16,12 +16,7 @@ public class Game {
 
 
 	void roll(int pinn) {
-		if (rounds == LAST_FRAME) {
-			addRoundTenBonus(pinn);
-		} else {
-			addSpareBonus(pinn);
-			addStrikeBonus(pinn);
-		}
+		checkIfLastRoundAndAddPoints(pinn);
 		numberOfRollsThisFrame++;
 
 		if (!strikeHit(pinn))
@@ -34,14 +29,26 @@ public class Game {
 			spare = 1;
 			roundScore.clear();
 			endRound();
-
 		} else if (numberOfRollsThisFrame == 2) {
 			addRoundScore();
 		}
 
 	}
 
-	private void addRoundTenBonus(int pinn) {
+	 private void checkIfLastRoundAndAddPoints(int pinn) {
+		 if (rounds == LAST_FRAME) {
+			 addRoundTenBonus(pinn);
+		 } else {
+			 addBonusPoints(pinn);
+		 }
+	 }
+
+	 private void addBonusPoints(int pinn) {
+		 addSpareBonus(pinn);
+		 addStrikeBonus(pinn);
+	 }
+
+	 private void addRoundTenBonus(int pinn) {
 		if (spare == 1) {
 			frames[rounds - 1] = 10 + pinn + pinn;
 			resetSpareCounter();
@@ -95,7 +102,7 @@ public class Game {
 	}
 
 	private boolean spareHit() {
-		return numberOfRollsThisFrame % 2 == 0 && (roundScore.get(numberOfRollsThisFrame - 1) + roundScore.get(numberOfRollsThisFrame - 2) == 10);
+		return numberOfRollsThisFrame % 2 == 0 && frameScore() == 10;
 	}
 
 	private void endRound() {
