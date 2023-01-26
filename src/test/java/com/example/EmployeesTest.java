@@ -40,4 +40,14 @@ class EmployeesTest {
 
 		assertFalse(employeeRepository.findAll().get(0).isPaid());
 	}
+
+	@Test
+	void payEmployeeExceptionSetsEmployeePaidToFalse() {
+		employeeRepository.employees.get(0).setPaid(true);
+		doThrow(RuntimeException.class).when(bankService).pay("1", 123);
+		employees.payEmployees();
+
+		assertFalse(employeeRepository.findAll().get(0).isPaid());
+	}
+
 }
