@@ -5,9 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.not;
-import static org.assertj.core.api.FactoryBasedNavigableListAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
 
 class EmployeeRepositoryImplTest {
 
@@ -34,7 +32,7 @@ class EmployeeRepositoryImplTest {
 
 	@Test
 	void clearDatabase() {
-		employeeRepository.ClearDatabase();
+		employeeRepository.clearDatabase();
 
 		assertEquals(0 , employeeRepository.findAll().size());
 
