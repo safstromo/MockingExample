@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class GameTest {
 	Game game = new Game();
@@ -71,7 +71,6 @@ class GameTest {
 		game.roll(5);
 
 		assertEquals(15, game.frames[0]);
-
 
 
 	}

@@ -22,7 +22,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 		this.employees.addAll(employeeList);
 	}
 
-	public void ClearDatabase(){
+	public void clearDatabase(){
 		employees.clear();
 	}
 }

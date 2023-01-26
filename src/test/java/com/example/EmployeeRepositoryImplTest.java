@@ -4,8 +4,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.AssertionsForClassTypes.not;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
 
 class EmployeeRepositoryImplTest {
 
@@ -32,7 +32,7 @@ class EmployeeRepositoryImplTest {
 
 	@Test
 	void clearDatabase() {
-		employeeRepository.ClearDatabase();
+		employeeRepository.clearDatabase();
 
 		assertEquals(0 , employeeRepository.findAll().size());
 
@@ -45,5 +45,14 @@ class EmployeeRepositoryImplTest {
 		assertEquals(employee,employeeRepository.save(employee));
 	}
 
+	@Test
+	void existingEmployeeIdIsReplaced() {
+		Employee employee = new Employee("3", 31);
+		Employee employee2 = new Employee("3", 313);
+		employeeRepository.save(employee);
+		employeeRepository.save(employee2);
 
+		assertFalse(employeeRepository.employees.contains(employee));
+		
+	}
 }

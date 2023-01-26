@@ -3,7 +3,6 @@ package com.example;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
- //SWITCH????
 public class Game {
 
 	int[] frames = new int[10];
@@ -63,13 +62,8 @@ public class Game {
 	 private void addRoundTenBonus(int pinn) {
 		if (spare == 1) {
 			frames[rounds - 1] = 10 + pinn + pinn;
-			resetSpareCounter();
-		} else if (pinn == 10) {
-			frames[rounds - 1] = frames[rounds - 1] + pinn;
-			endRound();
 		} else {
 			frames[rounds - 1] = frames[rounds - 1] + pinn;
-
 		}
 	}
 
@@ -77,7 +71,7 @@ public class Game {
 		if (strike == 1) {
 			frames[rounds] = 10 + pinn;
 			strike++;
-			endRound();
+
 		} else if (strike == 2) {
 			frames[rounds] = frames[rounds] + pinn;
 			resetStrikeCounter();
@@ -110,12 +104,8 @@ public class Game {
 	}
 
 	private boolean strikeHit(int pinn) {
-		return firstRoll() && pinn == 10;
+		return numberOfRollsThisFrame == 1 && pinn == 10;
 	}
-
-	 private boolean firstRoll() {
-		 return numberOfRollsThisFrame == 1;
-	 }
 
 	 private boolean spareHit() {
 		return endOfRound() && frameScore() == 10;
