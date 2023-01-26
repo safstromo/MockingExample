@@ -1,13 +1,12 @@
 package com.example;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.doThrow;
 
 class EmployeesTest {
 	EmployeeRepositoryImpl employeeRepository = new EmployeeRepositoryImpl(List.of
@@ -19,6 +18,12 @@ class EmployeesTest {
 	@Test
 	void payEmployeesPaymentIncrease() {
 		assertEquals(2, employees.payEmployees());
+	}
+
+	@Test
+	void payEmployeesPaymentNotIncrease() {
+		doThrow(RuntimeException.class).when(bankService).pay("1", 123);
+		assertEquals(1, employees.payEmployees());
 	}
 
 	@Test
@@ -35,5 +40,4 @@ class EmployeesTest {
 
 		assertFalse(employeeRepository.findAll().get(0).isPaid());
 	}
-
 }
