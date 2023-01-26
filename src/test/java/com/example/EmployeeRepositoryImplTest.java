@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
 
 class EmployeeRepositoryImplTest {
 
@@ -36,4 +37,13 @@ class EmployeeRepositoryImplTest {
 		assertEquals(0 , employeeRepository.findAll().size());
 
 	}
+
+	@Test
+	void saveEmployeeReturnsEmployee() {
+		Employee employee = new Employee("3", 31);
+
+		assertEquals(employee,employeeRepository.save(employee));
+	}
+
+
 }
