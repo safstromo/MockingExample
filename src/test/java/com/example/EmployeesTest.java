@@ -7,7 +7,7 @@ import org.mockito.Mockito;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.*;
 
 class EmployeesTest {
 	EmployeeRepositoryImpl employeeRepository = new EmployeeRepositoryImpl(List.of
@@ -34,7 +34,6 @@ class EmployeesTest {
 		employees.payEmployees();
 
 		assertFalse(employeeRepository.findAll().get(0).isPaid());
-
 	}
 
 }

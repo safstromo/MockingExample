@@ -63,13 +63,8 @@ public class Game {
 	 private void addRoundTenBonus(int pinn) {
 		if (spare == 1) {
 			frames[rounds - 1] = 10 + pinn + pinn;
-			resetSpareCounter();
-		} else if (pinn == 10) {
-			frames[rounds - 1] = frames[rounds - 1] + pinn;
-			endRound();
 		} else {
 			frames[rounds - 1] = frames[rounds - 1] + pinn;
-
 		}
 	}
 
@@ -77,7 +72,7 @@ public class Game {
 		if (strike == 1) {
 			frames[rounds] = 10 + pinn;
 			strike++;
-			endRound();
+
 		} else if (strike == 2) {
 			frames[rounds] = frames[rounds] + pinn;
 			resetStrikeCounter();
